@@ -10,6 +10,7 @@ int main( int argc, char* args[] ) {
     SDL_Init(SDL_INIT_EVERYTHING);
 
     SDL_Window *window = SDL_CreateWindow("ain't no way", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_ALLOW_HIGHDPI);
+    SDL_Renderer *renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
 
 
     if (NULL == window) {
@@ -18,6 +19,8 @@ int main( int argc, char* args[] ) {
     }
 
     SDL_Event windowEvent;
+    
+    SDL_SetRenderDrawColor(renderer, 0, 255, 255, 255);
 
     while (1) {
 
@@ -27,6 +30,7 @@ int main( int argc, char* args[] ) {
 
         }
     }
+    
 
     SDL_DestroyWindow(window);
     SDL_Quit();
