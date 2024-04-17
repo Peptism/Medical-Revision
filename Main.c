@@ -1,13 +1,13 @@
 #include <stdio.h>
 #include <SDL2/SDL.h>
 
-//Screen dimension constants
 const int SCREEN_WIDTH = 800, SCREEN_HEIGHT = 400;
 
-int main( int argc, char* args[] ) {
+int main(int argc, char* args[]) {
     
-    //The window we'll be rendering to
     SDL_Init(SDL_INIT_EVERYTHING);
+    
+    // FILE *file = fopen("src/data/Data.json", 'r');
 
     SDL_Window *window = SDL_CreateWindow("ain't no way", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_ALLOW_HIGHDPI);
         if (NULL == window) {
