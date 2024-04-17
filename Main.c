@@ -1,10 +1,12 @@
 #include <stdio.h>
+#include <string.h>
 #include <SDL2/SDL.h>
+#include <SDL2/SDL_ttf.h>
 
 const int SCREEN_WIDTH = 800, SCREEN_HEIGHT = 400;
 
 int main(int argc, char* args[]) {
-    
+    printf("Hello, world");
     SDL_Init(SDL_INIT_EVERYTHING);
     
     // FILE *file = fopen("src/data/Data.json", 'r');
