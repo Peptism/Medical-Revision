@@ -32,8 +32,6 @@ SDL_Renderer* CreateRenderer(SDL_Window *window) {
     return renderer;
 }
 
-
-
 void Render(SDL_Renderer *renderer) {
     SDL_SetRenderDrawColor(renderer, 40, 44, 52, 255);
     SDL_RenderClear(renderer);
@@ -83,6 +81,8 @@ int main(int argc, char* args[]) {
         EventsHandler();
         Render(renderer);
     }
+
+    CleanUp(renderer, window);
 
     return 0;
 }
