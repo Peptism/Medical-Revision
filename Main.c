@@ -6,7 +6,6 @@
 #define SCREEN_WIDTH 800
 #define SCREEN_HEIGHT 400
 
-TTF_Font *typeface = NULL;
 const SDL_Color textColor = {255, 255, 255, 255}; // White color
 
 SDL_Window* InitialiseSDL() {
@@ -43,7 +42,7 @@ SDL_Renderer* CreateRenderer(SDL_Window *window) {
 
 TTF_Font* Write(SDL_Window *window) {
 
-    typeface = TTF_OpenFont("src/fonts/Arial/ARIAlbd.ttf", 28);
+    TTF_Font *typeface = TTF_OpenFont("src/fonts/Arial/ARIAlbd.ttf", 28);
     if (typeface == NULL) {
         printf("Error writing to screen: %s\n", TTF_GetError());
         return NULL;
@@ -51,7 +50,7 @@ TTF_Font* Write(SDL_Window *window) {
     return typeface;
 }
 
-SDL_Surface* CreateTextSurface(SDL_Window *window) {
+SDL_Surface* CreateTextSurface(SDL_Window *window, TTF_Font *typeface) {
 
     SDL_Surface *textSurface = TTF_RenderText_Solid(typeface, "Hello, SDL_ttf!", textColor);
     if (textSurface == NULL) {
@@ -71,9 +70,11 @@ SDL_Texture* CreateTextTexture(SDL_Window *window, SDL_Renderer *renderer, SDL_S
     return textTexture;
 }
 
-void Render(SDL_Renderer *renderer) {
+void Render(SDL_Renderer *renderer, SDL_Surface *textSurface, SDL_Texture *textTexture) {
     SDL_SetRenderDrawColor(renderer, 40, 44, 52, 255);
     SDL_RenderClear(renderer);
+    const SDL_Rect dstRect = {100, 100, textSurface->w, textSurface->h};
+    SDL_RenderCopy(renderer, textTexture, NULL, &dstRect);
     SDL_RenderPresent(renderer);
 }
 
@@ -124,7 +125,7 @@ int main(int argc, char* args[]) {
         return 1;
     }
     
-    SDL_Surface *textSurface = CreateTextSurface(window);
+    SDL_Surface *textSurface = CreateTextSurface(window, typeface);
     if (textSurface == NULL) {
         return 1;
     }
@@ -136,7 +137,7 @@ int main(int argc, char* args[]) {
 
     while (1) {
         EventsHandler();
-        Render(renderer);
+        Render(renderer, textSurface, textTexture);
     }
 
     return 0;
