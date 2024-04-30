@@ -6,7 +6,7 @@
 #define SCREEN_WIDTH 800
 #define SCREEN_HEIGHT 400
 
-const SDL_Color textColor = {255, 255, 255, 255}; // White color
+const SDL_Color textColor = {255, 255, 255, 255}; // White
 
 SDL_Window* InitialiseSDL() {
 
