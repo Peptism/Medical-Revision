@@ -52,7 +52,7 @@ TTF_Font* Write(SDL_Window *window) {
 
 SDL_Surface* CreateTextSurface(SDL_Window *window, TTF_Font *typeface) {
 
-    SDL_Surface *textSurface = TTF_RenderText_Solid(typeface, "Hello, SDL_ttf!", textColor);
+    SDL_Surface *textSurface = TTF_RenderText_Blended(typeface, "Text test.", textColor);
     if (textSurface == NULL) {
         printf("Failed to render text surface: %s\n", TTF_GetError());
         return NULL;
