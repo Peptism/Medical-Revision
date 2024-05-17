@@ -42,17 +42,17 @@ SDL_Renderer* CreateRenderer(SDL_Window *window) {
 
 TTF_Font* Write(SDL_Window *window) {
 
-    TTF_Font *typeface = TTF_OpenFont("src/fonts/Arial/ARIAlbd.ttf", 28);
-    if (typeface == NULL) {
+    TTF_Font *fontFace = TTF_OpenFont("src/fonts/Arial/ARIAlbd.ttf", 28);
+    if (fontFace == NULL) {
         printf("Error writing to screen: %s\n", TTF_GetError());
         return NULL;
     }
-    return typeface;
+    return fontFace;
 }
 
-SDL_Surface* CreateTextSurface(SDL_Window *window, TTF_Font *typeface) {
+SDL_Surface* CreateTextSurface(SDL_Window *window, TTF_Font *fontFace) {
 
-    SDL_Surface *textSurface = TTF_RenderText_Blended(typeface, "Text test.", textColor);
+    SDL_Surface *textSurface = TTF_RenderText_Blended(fontFace, "Text test.", textColor);
     if (textSurface == NULL) {
         printf("Failed to render text surface: %s\n", TTF_GetError());
         return NULL;
@@ -79,7 +79,6 @@ void Render(SDL_Renderer *renderer, SDL_Surface *textSurface, SDL_Texture *textT
 }
 
 void EventsHandler() {
-
     SDL_Event windowEvent;
     while (SDL_PollEvent(&windowEvent)) {
 
@@ -90,12 +89,12 @@ void EventsHandler() {
     }
 }
 
-void CleanUp(SDL_Renderer *renderer, SDL_Window *window, SDL_Surface *textSurface, TTF_Font *typeface) {
+void CleanUp(SDL_Renderer *renderer, SDL_Window *window, SDL_Surface *textSurface, TTF_Font *fontFace) {
     SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);
     
     SDL_FreeSurface(textSurface);
-    TTF_CloseFont(typeface);
+    TTF_CloseFont(fontFace);
 
     TTF_Quit();
     SDL_Quit();
@@ -120,12 +119,12 @@ int main(int argc, char* args[]) {
         return 1;
     }
 
-    TTF_Font *typeface = Write(window);
-    if (typeface == NULL) {
+    TTF_Font *fontFace = Write(window);
+    if (fontFace == NULL) {
         return 1;
     }
     
-    SDL_Surface *textSurface = CreateTextSurface(window, typeface);
+    SDL_Surface *textSurface = CreateTextSurface(window, fontFace);
     if (textSurface == NULL) {
         return 1;
     }
