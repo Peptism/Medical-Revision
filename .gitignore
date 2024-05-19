@@ -1,9 +1,0 @@
-*.vscode
-
-/Old
-
-*.exe
-
-/Flutter
-
-.gitignore
