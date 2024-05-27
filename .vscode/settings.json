@@ -1,9 +1,0 @@
-{
-    "files.associations": {
-        "*.bf": "brainfuck",
-        "main.C": "cpp",
-        "stdio.h": "c"
-    },
-    // "C_Cpp.errorSquiggles": "disabled",
-    "cmake.configureOnOpen": false
-}
